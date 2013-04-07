@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieGuide;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -61,6 +63,7 @@ namespace utorrentMetro
 
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
+                SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
             }
 
             if (rootFrame.Content == null)
@@ -75,6 +78,31 @@ namespace utorrentMetro
             }
             // 确保当前窗口处于活动状态
             Window.Current.Activate();
+        }
+
+        private void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            Rect _windowBounds = Window.Current.Bounds;
+            double _settingsWidth = 346;
+
+            var privacy = new SettingsCommand("privacy", "Privacy Policy", (handler) =>
+            {
+                var _settingsPopup = new Popup();
+                SettingPanel control = new SettingPanel();
+                _settingsPopup.Child = control;
+                _settingsPopup.IsLightDismissEnabled = true;
+                _settingsPopup.Width = _settingsWidth;
+                _settingsPopup.Height = _windowBounds.Height;
+                control.Width = _settingsWidth;
+                control.Height = _windowBounds.Height;
+                _settingsPopup.SetValue(Canvas.LeftProperty, _windowBounds.Width - _settingsWidth);
+                _settingsPopup.SetValue(Canvas.TopProperty, 0);
+                _settingsPopup.IsOpen = true;
+                control.setTitle("Privacy");
+                control.setContent("uTorrentMetro use your internet connection to communicate with WebUI API provided by your own local uTorrent client (For example, fetching torrent list, sending start/pause command, etc.). So, no external network connection is used in this application and none of your personal information could be collected or transmitted.");
+            });
+
+            args.Request.ApplicationCommands.Add(privacy);
         }
 
         /// <summary>
