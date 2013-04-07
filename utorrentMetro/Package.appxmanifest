@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="21795tjumyk.uTorrentMetro" Publisher="CN=7C798FBE-A836-4077-825E-FA40C78B3B36" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>uTorrentMetro</DisplayName>
+    <PublisherDisplayName>tjumyk</PublisherDisplayName>
+    <Logo>Assets\icon50.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="utorrentMetro.App">
+      <VisualElements DisplayName="uTorrent Metro" Logo="Assets\icon150.png" SmallLogo="Assets\icon30.png" Description="Win8 Metro client for uTorrent." ForegroundText="light" BackgroundColor="#55AC45" ToastCapable="true">
+        <DefaultTile ShowName="allLogos" ShortName="uTorrentMetro" WideLogo="Assets\icon310x150.png" />
+        <SplashScreen Image="Assets\icon620x300.png" BackgroundColor="#55AC45" />
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

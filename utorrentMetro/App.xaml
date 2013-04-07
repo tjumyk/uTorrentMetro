@@ -1,0 +1,134 @@
+﻿<Application
+    x:Class="utorrentMetro.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:utorrentMetro"
+    xmlns:c="using:utorrentMetro.Converters"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- 
+                    用于定义平台外观的共同方面的样式
+                    Visual Studio 项目和项模板所必需的
+                 -->
+                <ResourceDictionary Source="Common/StandardStyles.xaml"/>
+
+                <ResourceDictionary>
+                    <x:String x:Key="AppName">utorrentMetro</x:String>
+                    
+                    <Color x:Key="green_dark_color">#FF00853F</Color>
+                    <Color x:Key="green_light_color">#FF5BC175</Color>
+                    
+                    <SolidColorBrush x:Key="green_dark" Color="{StaticResource green_dark_color}"/>
+                    <SolidColorBrush x:Key="green_light" Color="{StaticResource green_light_color}"/>
+
+                    <!-- Override Default Brush for Items in ListView or GridView -->
+                    <SolidColorBrush x:Key="ListViewItemPlaceholderBackgroundThemeBrush" Color="{StaticResource green_light_color}" />
+                    <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="{StaticResource green_light_color}" />
+                    <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="{StaticResource green_light_color}" />
+                    <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="{StaticResource green_light_color}" />
+
+                    <!-- Override Default Brush for Normal Buttons, Back Buttons, TextBoxes and PasswordBoxes -->
+                    <SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="{StaticResource green_dark_color}" />
+                    <SolidColorBrush x:Key="ButtonForegroundThemeBrush" Color="WhiteSmoke" />
+                    <SolidColorBrush x:Key="ButtonPointerOverBackgroundThemeBrush" Color="{StaticResource green_light_color}" />
+                    <SolidColorBrush x:Key="ButtonBorderThemeBrush" Color="{StaticResource green_light_color}" />
+                    <SolidColorBrush x:Key="TextBoxBorderThemeBrush" Color="{StaticResource green_light_color}" />
+                    <SolidColorBrush x:Key="BackButtonBackgroundThemeBrush" Color="{StaticResource green_dark_color}" />
+                    <SolidColorBrush x:Key="BackButtonForegroundThemeBrush" Color="WhiteSmoke" />
+                    <SolidColorBrush x:Key="BackButtonPointerOverBackgroundThemeBrush" Color="{StaticResource green_light_color}" />
+                    <SolidColorBrush x:Key="BackButtonPressedForegroundThemeBrush" Color="Black" />
+                    <SolidColorBrush x:Key="ProgressBarForegroundThemeBrush" Color="{StaticResource green_dark_color}" />
+                    
+                    <!-- Colors to indicate different status -->
+                    <SolidColorBrush x:Key="error_color" Color="Red" />
+                    <SolidColorBrush x:Key="paused_color" Color="Gray" />
+                    <SolidColorBrush x:Key="normal_color" Color="{StaticResource green_dark_color}" />
+
+                    <ImageBrush x:Key="bg_img" ImageSource="Assets/bg.png" />
+                    
+                    <Style x:Key="text_btn_selected" TargetType="Button" BasedOn="{StaticResource TextButtonStyle}">
+                        <Setter Property="Foreground" Value="{StaticResource green_dark}"/>
+                    </Style>
+                    <Style x:Key="text_btn_normal" TargetType="Button" BasedOn="{StaticResource TextButtonStyle}">
+                        <Setter Property="Foreground" Value="{StaticResource green_light}"/>
+                    </Style>
+
+                    <Style x:Key="text_grid_item" TargetType="TextBlock" BasedOn="{StaticResource ItemTextStyle}">
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="Margin" Value="15,5,15,5"/>
+                    </Style>
+                    
+                    <c:StatusColorConverter  x:Key="StatusColorConverter"/>
+                    <c:FileSizeConverter x:Key="FileSizeConverter"/>
+                    <c:PercentageConverter x:Key="PercentageConverter"/>
+                    <c:RatioConverter x:Key="RatioConverter"/>
+                    <c:TimeSpanConverter x:Key="TimeSpanConverter"/>
+                    <c:TransferSpeedConverter x:Key="TransferSpeedConverter"/>
+
+                    <DataTemplate x:Key="TorrentItemTemplate">
+                        <Grid HorizontalAlignment="Left" Width="300" Height="100">
+                            <StackPanel VerticalAlignment="Bottom">
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Name}" ToolTipService.ToolTip="{Binding Name}" Foreground="Black" Style="{StaticResource TitleTextStyle}" Height="40" Margin="15,0,15,0"/>
+                                <ProgressBar Foreground="{Binding Status,Converter={StaticResource StatusColorConverter}}" Value="{Binding Progress}" Maximum="1000" Margin="15,10,15,10"/>
+                                <StackPanel Orientation="Horizontal" Width="300" HorizontalAlignment="Left">
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding StatusMessage}" Foreground="{Binding Status,Converter={StaticResource StatusColorConverter}}" FontSize="16"  Style="{StaticResource CaptionTextStyle}"  Margin="15,0,15,10"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Size,Converter={StaticResource FileSizeConverter}}" FontSize="16"  Foreground="Gray" Style="{StaticResource CaptionTextStyle}"  Margin="30,0,15,10"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Progress,Converter={StaticResource PercentageConverter}}" FontSize="16" Foreground="Gray" Style="{StaticResource CaptionTextStyle}"  Margin="30,0,15,10"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="FeedItemTemplate">
+                        <Grid HorizontalAlignment="Left" Height="30">
+                            <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
+                                <Image Source="Assets/feed.png" Margin="15,5,5,0"/>
+                                <TextBlock Text="{Binding Name}"  Style="{StaticResource text_grid_item}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="FeedItemItemTemplate">
+                        <Grid HorizontalAlignment="Left" Height="30">
+                            <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
+                                <Image Source="Assets/feed.png" Margin="15,5,5,0"/>
+                                <TextBlock Text="{Binding Name}"  Style="{StaticResource text_grid_item}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+
+                    <!--<DataTemplate x:Key="DeviceItemTemplate">
+                        <Grid HorizontalAlignment="Left" Width="250" Height="250">
+                            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                                <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                                <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+                                <TextBlock Text="{Binding Subtitle}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>-->
+
+                    <DataTemplate x:Key="FileItemTemplate">
+                        <Grid Width="1200" Height="30">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource text_grid_item}"  Text="{Binding Name}" ToolTipService.ToolTip="{Binding Name}" Width="400"/>
+                                <TextBlock Style="{StaticResource text_grid_item}"  Text="{Binding Size, Converter={StaticResource FileSizeConverter}}" Width="100"/>
+                                <TextBlock Style="{StaticResource text_grid_item}"  Text="{Binding Downloaded, Converter={StaticResource FileSizeConverter}}" Width="100"/>
+                                <TextBlock Style="{StaticResource text_grid_item}"  Text="{Binding Priority}" Width="100"/>
+                                <ProgressBar Value="{Binding Progress}" Maximum="1000" Margin="0,10,15,10" Width="200"/>
+                                <TextBlock Style="{StaticResource text_grid_item}"  Text="{Binding Progress,Converter={StaticResource PercentageConverter}}" Width="100"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
