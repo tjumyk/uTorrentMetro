@@ -90,11 +90,11 @@
                 <Canvas x:Name="torrentsPage" Background="{StaticResource bg_img}" Width="1200"  >
                     <StackPanel Canvas.Left="50" Canvas.Top="50" Orientation="Horizontal">
                         <TextBlock TextWrapping="Wrap" Text="torrents" FontSize="36" Style="{StaticResource CaptionTextStyle}" Margin="0,0,50,0"/>
-                        <Button Content="all" Style="{StaticResource text_btn_selected}" FontSize="20" Margin="0,0,20,0" Click="torrentCategoryButtonClicked"/>
+                        <!--<Button Content="all" Style="{StaticResource text_btn_selected}" FontSize="20" Margin="0,0,20,0" Click="torrentCategoryButtonClicked"/>
                         <Button Content="download" Style="{StaticResource text_btn_normal}" FontSize="20" Margin="0,0,20,0" Click="torrentCategoryButtonClicked"/>
                         <Button Content="finished" Style="{StaticResource text_btn_normal}" FontSize="20" Margin="0,0,20,0" Click="torrentCategoryButtonClicked"/>
                         <Button Content="active" Style="{StaticResource text_btn_normal}" FontSize="20" Margin="0,0,20,0" Click="torrentCategoryButtonClicked"/>
-                        <Button Content="stopped" Style="{StaticResource text_btn_normal}" FontSize="20" Margin="0,0,20,0" Click="torrentCategoryButtonClicked"/>
+                        <Button Content="stopped" Style="{StaticResource text_btn_normal}" FontSize="20" Margin="0,0,20,0" Click="torrentCategoryButtonClicked"/>-->
                     </StackPanel>
                     
                     <GridView x:Name="torrentGrid" Width="1100" Canvas.Top="102" Canvas.Left="50" Height="492"

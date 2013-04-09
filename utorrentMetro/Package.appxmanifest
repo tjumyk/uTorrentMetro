@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="21795tjumyk.uTorrentMetro" Publisher="CN=7C798FBE-A836-4077-825E-FA40C78B3B36" Version="1.0.0.0" />
+  <Identity Name="21795tjumyk.uTorrentMetro" Publisher="CN=7C798FBE-A836-4077-825E-FA40C78B3B36" Version="1.0.0.2" />
   <Properties>
     <DisplayName>uTorrentMetro</DisplayName>
     <PublisherDisplayName>tjumyk</PublisherDisplayName>

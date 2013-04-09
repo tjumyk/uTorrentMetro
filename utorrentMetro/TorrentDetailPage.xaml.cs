@@ -218,19 +218,19 @@ namespace utorrentMetro
                     try
                     {
                         PopupMenu pm = new PopupMenu();
-                        pm.Commands.Add(new UICommand("Download", (command) =>
-                        {
-                            MessageDialog md = new MessageDialog("Not implemented!");
-                            md.ShowAsync();
-                        }));
+                        //pm.Commands.Add(new UICommand("Download", (command) =>
+                        //{
+                        //    MessageDialog md = new MessageDialog("Not implemented!");
+                        //    md.ShowAsync();
+                        //}));
                         pm.Commands.Add(new UICommand("Download by external broswer", (command) =>
                         {
                             Windows.System.Launcher.LaunchUriAsync(uri);
                         }));
-                        pm.Commands.Add(new UICommand("Preview", (command) =>
-                        {
-                            this.Frame.Navigate(typeof(PreviewPage), uri);
-                        }));
+                        //pm.Commands.Add(new UICommand("Preview", (command) =>
+                        //{
+                        //    this.Frame.Navigate(typeof(PreviewPage), uri);
+                        //}));
                         await pm.ShowForSelectionAsync(Util.GetElementRect((FrameworkElement)sender));
                     }
                     catch (Exception e1)
