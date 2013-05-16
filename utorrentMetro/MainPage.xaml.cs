@@ -55,7 +55,7 @@ namespace utorrentMetro
 
                     // load old settings
                     object tmp;
-                    if (ApplicationData.Current.LocalSettings.Values.TryGetValue("hostname", out tmp)) hostTextBox.Text = tmp as String;
+                    if (ApplicationData.Current.LocalSettings.Values.TryGetValue("host", out tmp)) hostTextBox.Text = tmp as String;
                     if (ApplicationData.Current.LocalSettings.Values.TryGetValue("port", out tmp)) portTextBox.Text = tmp as String;
                     if (ApplicationData.Current.LocalSettings.Values.TryGetValue("username", out tmp)) usernameTextBox.Text = tmp as String;
                     if (ApplicationData.Current.LocalSettings.Values.TryGetValue("pass", out tmp)) passwordBox.Password = tmp as String;
